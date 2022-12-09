@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- Properties -->
+    <property resource="application.properties"/>
+    <property name="LOG_HOME" value="${system.common.logging.path}" />
+
+    <!--콘솔에 로그 설정 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%blue(%X{userId})] [%blue(%X{ipAddress})] %d{yyyy/MM/dd HH:mm:ss.SSS} %highlight(%-5level) %green([%-26(%logger{0}:%L)]) %m%n</pattern>
+		</encoder>
+    </appender>
+    
+    <!-- 로그의 크기가 지정한 용량 이상이 되면 다른 이름의 파일을 출력 -->
+    <appender name="file_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/system.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        	<!-- daily 로그 생성 -->
+            <fileNamePattern>${LOG_HOME}/system-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <!-- 로그파일 최대 보관주기(일단위) maxHistory 설정일이 지난 로그는 자동 삭제 -->
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>EUC-KR</charset>
+            <pattern>[%magenta(%X{userId})] [%magenta(%X{ipAddress})] %d{yyyy/MM/dd HH:mm:ss.SSS} %highlight(%-5level) %cyan([%-26(%logger{0}:%L)]) %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.mybatis.spring"  level="INFO" />
+    <logger name="com.example.core"    level="DEBUG" />
+    <logger name="com.example.demo"    level="DEBUG" />
+
+    <logger name="jdbc"                level="OFF" />
+    <logger name="jdbc.audit"          level="OFF" />   <!-- ResultSet을 제외한 모든 JDBC 호출 정보를 출력합니다.  JDBC 관련 문제를 추적하는 경우를 제외하고는 사용이 권장되지 않습니다. -->
+    <logger name="jdbc.sqlonly"        level="OFF" />   <!-- SQL을 로그로 남기며, Prepared Statement와 관련된 파라미터는 자동으로 변경되어 SQL을 출력합니다. -->
+    <logger name="jdbc.resultset"      level="OFF" />   <!-- ResultSet을 포함한 모든 JDBC 호출 정보를 출력합니다. -->
+    <logger name="jdbc.resultsettable" level="OFF" />   <!-- SQL 조회 결과를 테이블 형태로 출력합니다. -->
+    <logger name="jdbc.sqltiming"      level="INFO" />  <!-- SQL과 SQL 실행 시간(milliseconds 단위)을 출력합니다. -->
+    <logger name="log4jdbc.debug"      level="OFF" />
+    
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <appender-ref ref="file_log" />
+    </root>
+    
+</configuration>

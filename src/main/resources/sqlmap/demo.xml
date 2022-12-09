@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.DemoMapper">
+	<select id="selectDemo1" resultType="map">
+		SELECT SUBJECT
+		     , #{testParameter} as v_param
+		  FROM tcmsDev.BZDNOTC
+		LIMIT 1
+	</select>
+
+	<select id="selectDemo2" resultType="map">
+		SELECT SUBJECT
+		     , #{testParameter} as v_param
+		     , #{annotationParam} as v_annotationParam
+		  FROM tcmsDev.BZDNOTC
+		LIMIT 1
+	</select>
+
+	<insert id="insertDemo">
+		INSERT INTO tcmsDev.BZDNOTC ( NOTC_NUM, GATE_CD, REG_DATE, CONTENTS ) VALUES (
+		IFNULL(
+				      ( SELECT NOTC_NUM
+					      FROM ( SELECT MAX(NOTC_NUM) AS NOTC_NUM
+					               FROM tcmsDev.BZDNOTC
+					           ) AS V
+					  ), 0 ) + 1
+		, '100', NOW(), #{annotationParam})
+	</insert>
+</mapper>
