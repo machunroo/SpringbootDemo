@@ -27,8 +27,8 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="INFO" />
-    <logger name="org.mybatis.spring"  level="INFO" />
+    <logger name="org.springframework" level="DEBUG" />
+    <logger name="org.mybatis.spring"  level="DEBUG" />
     <logger name="com.example.core"    level="DEBUG" />
     <logger name="com.example.demo"    level="DEBUG" />
 

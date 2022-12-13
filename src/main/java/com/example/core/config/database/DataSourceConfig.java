@@ -43,7 +43,7 @@ public class DataSourceConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 
         sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setPlugins(new MyBatisInterceptor());
+//        sqlSessionFactoryBean.setPlugins(new MyBatisInterceptor());
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources(mapperPath));
         sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource(mybatisConfigPath));
 
