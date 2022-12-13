@@ -11,7 +11,7 @@
     <title>login</title>
 </head>
 <body>
-<form name="frm" action="/login/process" method="post">
+<form name="frm" action="/authenticate" method="post">
     <label>
         아이디:<input type="text" name="loginId" value="____MASTER____">
     </label>

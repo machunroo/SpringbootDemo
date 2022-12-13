@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.core.config.security.UserInfo;
+import com.example.core.config.servlet.ClientHolder;
 import com.example.demo.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -19,13 +21,16 @@ public class DemoLoginController {
 
     @Autowired DemoService service;
 
-    @GetMapping("/login")
+    @GetMapping(value = "/login")
     public String login(Model model, HttpServletRequest request) {
         return "login";
     }
 
     @GetMapping("/main")
     public String main(Model model, HttpServletRequest request) {
+        UserInfo user = ClientHolder.getUserInfo();
+        System.out.println("DemoLoginController[main]: " + user.getLoginId());
+        System.out.println("DemoLoginController[main]: " + user.getPassword());
         return "main";
     }
 
