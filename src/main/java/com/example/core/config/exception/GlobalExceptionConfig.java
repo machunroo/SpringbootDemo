@@ -23,36 +23,6 @@ public class GlobalExceptionConfig {
 
     public static final String DEFAULT_ERROR_VIEW = "error";
 
-//    /**
-//     * 존재하지 않는 화면 호출시 처리
-//     * @param ex
-//     * @param model
-//     * @return
-//     */
-//    @ExceptionHandler(NoHandlerFoundException.class)
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public ModelAndView handle404(HttpServletRequest req, Exception ex) {
-//        log.error("[404] 페이지를 찾을 수 없음");
-//
-//        ModelAndView mav = new ModelAndView();
-//        mav.addObject("msg", "페이지를 찾을 수 없음");
-//        mav.addObject("exception", ExceptionUtils.getStackTrace(ex));
-////        mav.addObject("url", req.getRequestURL());
-//        mav.setViewName(DEFAULT_ERROR_VIEW);
-//        return mav;
-//    }
-//
-//
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView handleException(HttpServletRequest req, Exception ex) {
-//        log.error("오류가 발생 하였습니다.........., statusCode:               ");
-//        ModelAndView mav = new ModelAndView();
-//        mav.addObject("msg", "오류발생");
-////        mav.addObject("exception", ExceptionUtils.getStackTrace(ex));
-//        mav.addObject("url", req.getRequestURL());
-//        mav.setViewName(DEFAULT_ERROR_VIEW);
-//        return mav;
-//    }
     /**
      * 존재하지 않는 화면 호출시 처리
      * @param ex
