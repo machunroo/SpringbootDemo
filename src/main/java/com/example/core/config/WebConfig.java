@@ -1,6 +1,10 @@
 package com.example.core.config;
 
 import com.example.core.config.servlet.DemoInterceptor;
+import com.example.core.config.servlet.filter.DemoFilter;
+import com.example.core.config.servlet.filter.DemoFilter2;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -13,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new DemoInterceptor())
+//                .order(1)
 //                .addPathPatterns("*");
                 .excludePathPatterns("/css/**", "/images/**", "/js/**") // interceptor 제외 설정
                 ;
@@ -33,5 +38,4 @@ public class WebConfig implements WebMvcConfigurer {
                 // .allowedHeaders("x-requested-with, origin, content-type, accept")
         ;
     }
-
 }

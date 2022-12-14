@@ -1,5 +1,7 @@
 package com.example.core.config.security;
 
+import com.example.core.model.RestResult;
+import com.example.core.util.JsonUtil;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -32,6 +34,9 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		session.setAttribute("ses", user);
 
 		System.out.println("CustomSuccessHandler SuccessSuccessSuccessSuccess 222222222222222222222222222");
-		response.sendRedirect("/main1");
+
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().write(JsonUtil.toString(new RestResult(true, null, user.getUserType())));
+
 	}
 }

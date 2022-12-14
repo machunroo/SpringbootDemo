@@ -14,7 +14,7 @@ public class CustomUserDetails  implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 174726374856727L;
 
-    private final UserInfo user;		// 로그인용 ID 값
+    private final UserInfo user; // 사용자 정보
     private final Collection<GrantedAuthority> authorities;	//권한 목록
 
     public CustomUserDetails(UserInfo user) {

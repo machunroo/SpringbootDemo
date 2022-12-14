@@ -5,6 +5,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -41,6 +42,10 @@ public class SpringSecurityConfigNew {
                 .successHandler(new CustomLoginSuccessHandler())
                 .failureHandler(new CustomLoginFailureHandler())
                 .permitAll()
+            // 스프링 시큐리티가 세션을 생성하지 않지만 기존에 존재하면 사용
+            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+            // 동일한 도메인에서 iframe 접근 가능하게 설정
+            .and().headers().frameOptions().sameOrigin()
             .and()
                 .logout()
                 .logoutSuccessHandler(new CustomLogoutSuccessHandler())
